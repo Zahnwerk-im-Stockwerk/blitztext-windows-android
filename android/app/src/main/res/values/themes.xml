@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Blitztext" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/nachtblau</item>
+        <item name="android:colorAccent">@color/gold</item>
+        <item name="android:colorPrimary">@color/gold</item>
+        <item name="android:colorPrimaryDark">@color/nachtblau</item>
+        <item name="android:textColorPrimary">@color/text</item>
+        <item name="android:textColorSecondary">@color/text_gedaempft</item>
+        <item name="android:textColorHint">@color/text_gedaempft</item>
+        <item name="android:colorControlNormal">@color/text_gedaempft</item>
+        <item name="android:colorControlActivated">@color/gold</item>
+        <item name="android:statusBarColor">@color/nachtblau</item>
+        <item name="android:navigationBarColor">@color/nachtblau</item>
+    </style>
+</resources>

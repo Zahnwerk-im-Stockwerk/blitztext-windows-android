@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Mikrofon fuer die Aufnahme -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Verbindung zum eigenen VPS-Backend (via Tailscale) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Schwebender Knopf ueber anderen Apps -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- Dauer-Dienst fuer den Knopf (Pflicht-Benachrichtigung) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Fuehlbares Warnsignal wenn kein Ton ankommt (Aufnahmeindikator) -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/Theme.Blitztext"
+        android:usesCleartextTraffic="true">
+        <!-- usesCleartextTraffic: Backend laeuft als http:// im privaten Tailscale-Netz,
+             die Leitung selbst ist durch Tailscale (WireGuard) verschluesselt. -->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Ergebnis-Fenster nach Diktat ohne fokussiertes Textfeld.
+             singleTop: weiteres Diktat haengt unten an statt ein zweites Fenster zu stapeln -->
+        <activity
+            android:name=".ErgebnisActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+
+        <service
+            android:name=".FloatingButtonService"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <service
+            android:name=".EinfuegenService"
+            android:exported="true"
+            android:label="@string/einfuegen_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/einfuegen_service_config" />
+        </service>
+
+    </application>
+</manifest>

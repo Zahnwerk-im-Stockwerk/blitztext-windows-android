@@ -1,0 +1,42 @@
+# Eigenstaendiger Container fuer Blitztext.
+# Laeuft als separater Dienst und greift in keine anderen Container auf dem VPS ein.
+#
+# Start auf dem VPS:   docker compose up -d --build
+# Logs:                docker compose logs -f
+# Neu starten (z.B. nach Passwort-Aenderung):  docker compose restart
+#
+# Lauscht nur auf 127.0.0.1:8099 des VPS (NICHT oeffentlich). Erreichbar von
+# ueberall wird der Dienst erst durch:  tailscale serve --bg 8099
+# (siehe README). So ist kein offener Port im Internet noetig.
+
+services:
+  blitztext:
+    build: .
+    container_name: blitztext-backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      # Privat-Modus: lokales Whisper beim Start vorladen (sonst dauert das erste Privat-Diktat lange)
+      - LOKAL_STT_VORLADEN=1
+    ports:
+      - "127.0.0.1:8099:8000"
+    volumes:
+      - whisper-modelle:/modelle
+    depends_on:
+      - ollama
+
+  # Eigenes Sprachmodell fuer die Privat-Veredelung. Bewusst OHNE ports-Eintrag:
+  # nur blitztext erreicht es im internen Compose-Netz, von aussen gar nicht.
+  # mem_limit schuetzt andere Dienste auf demselben VPS vor RAM-Hunger.
+  ollama:
+    image: ollama/ollama:latest
+    container_name: blitztext-ollama
+    restart: unless-stopped
+    mem_limit: 3g
+    volumes:
+      - ollama-daten:/root/.ollama
+
+volumes:
+  whisper-modelle:
+  ollama-daten:

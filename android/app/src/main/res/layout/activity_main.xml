@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Kopfzeile: Logo + Titel -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/bild_logo"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@drawable/logo_zahnwerk"
+                android:contentDescription="@string/app_name" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@color/text"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/untertitel"
+                    android:textColor="@color/gold"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Karte: Verbindung -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/karte_hintergrund"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/kopf_verbindung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/abschnitt_verbindung"
+                android:textColor="@color/gold"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
+
+            <LinearLayout
+                android:id="@+id/inhalt_verbindung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            <EditText
+                android:id="@+id/feld_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hinweis_backend_url"
+                android:inputType="textUri"
+                android:textColor="@color/text"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/feld_passwort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hinweis_passwort"
+                android:inputType="textPassword"
+                android:textColor="@color/text"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/feld_begriffe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hinweis_begriffe"
+                android:inputType="text"
+                android:textColor="@color/text"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/knopf_selbsttest"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/knopf_selbsttest"
+                    android:backgroundTint="@color/karte"
+                    android:textColor="@color/gold" />
+
+                <Button
+                    android:id="@+id/knopf_speichern"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/knopf_speichern"
+                    android:backgroundTint="@color/gold"
+                    android:textColor="@color/nachtblau" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_teststatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/text_gedaempft"
+                android:layout_marginTop="8dp" />
+
+            </LinearLayout> <!-- /inhalt_verbindung -->
+        </LinearLayout>
+
+        <!-- Karte: Modus -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/karte_hintergrund"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/abschnitt_modus"
+                android:textColor="@color/gold"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <RadioGroup
+                android:id="@+id/gruppe_modus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/modus_klartext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/modus_klartext"
+                    android:textColor="@color/text"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/modus_umschreiben"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/modus_umschreiben"
+                    android:textColor="@color/text"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/modus_freundlich"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/modus_freundlich"
+                    android:textColor="@color/text"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/modus_emoji"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/modus_emoji"
+                    android:textColor="@color/text"
+                    android:textSize="14sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <!-- Karte: Privat-Modus -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/karte_hintergrund"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/kopf_privat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/abschnitt_privat"
+                android:textColor="@color/gold"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:layout_marginBottom="4dp" />
+
+            <Switch
+                android:id="@+id/schalter_privat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privat_schalter"
+                android:textColor="@color/text"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/text_privat_erklaerung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privat_erklaerung"
+                android:textColor="@color/text_gedaempft"
+                android:textSize="12sp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Karte: Berechtigungen -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/karte_hintergrund"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/abschnitt_berechtigungen"
+                android:textColor="@color/gold"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/status_mikrofon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/recht_mikrofon"
+                    android:textColor="@color/text"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/knopf_mikrofon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/knopf_erteilen"
+                    android:backgroundTint="@color/gold"
+                    android:textColor="@color/nachtblau" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/status_overlay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/recht_overlay"
+                    android:textColor="@color/text"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/knopf_overlay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/knopf_erteilen"
+                    android:backgroundTint="@color/gold"
+                    android:textColor="@color/nachtblau" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/status_einfuegen"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/recht_einfuegen"
+                    android:textColor="@color/text"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/knopf_einfuegen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/knopf_erteilen"
+                    android:backgroundTint="@color/gold"
+                    android:textColor="@color/nachtblau" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Karte: Schwebe-Knopf -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/karte_hintergrund"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/kopf_knopf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/abschnitt_knopf"
+                android:textColor="@color/gold"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/text_knopf_erklaerung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/knopf_erklaerung"
+                android:textColor="@color/text_gedaempft"
+                android:textSize="13sp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/knopf_schwebeknopf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/knopf_starten"
+                android:backgroundTint="@color/gold"
+                android:textColor="@color/nachtblau" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

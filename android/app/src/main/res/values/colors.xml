@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Zahnwerk-Palette: Nachtblau + Gold -->
+<resources>
+    <color name="gold">#C8A84B</color>
+    <color name="gold_dunkel">#9B7D20</color>
+    <color name="nachtblau">#0C1526</color>
+    <color name="karte">#152035</color>
+    <color name="text">#EEF2FF</color>
+    <color name="text_gedaempft">#7A8FAF</color>
+    <color name="gruen">#34D399</color>
+    <color name="rot">#F87171</color>
+    <color name="gelb">#FBBF24</color>
+    <color name="weiss">#FFFFFF</color>
+</resources>

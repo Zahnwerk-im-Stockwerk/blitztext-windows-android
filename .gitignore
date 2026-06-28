@@ -1,0 +1,39 @@
+# Echte Geheimnisse + lokale Artefakte nie einchecken
+.env
+*.env
+!.env.example
+
+# Audio-Schnipsel (falls lokal getestet wird)
+*.wav
+*.m4a
+*.opus
+_audio/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Laufzeit-Logs + Diagnose-Reste (kein Code)
+blitz.log
+diag_out.txt
+diag_err.txt
+*.swp
+
+# Android-Build-Artefakte
+android/app/build/
+android/.gradle/
+*.apk
+
+# Signatur-Schluessel NIE oeffentlich (jeder baut mit eigenem Schluessel, siehe README)
+*.keystore
+android/signing/
+
+# Lokale Backups + rechner-spezifische Helfer (gehoeren nicht ins oeffentliche Repo)
+*.bak-*
+windows-client/auf_vps_umstellen.py
+windows-client/Mikrotest.bat
+windows-client/_test_umbau.py
+backend/_messung_privat.py
+backend/setup_local_test.py

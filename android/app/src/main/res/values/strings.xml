@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BlitzText</string>
+    <string name="untertitel">Zahnwerk im Stockwerk</string>
+    <string name="einfuegen_service_label">BlitzText: Text einfügen</string>
+    <string name="einfuegen_service_beschreibung">Fügt den diktierten Text direkt in das aktive Eingabefeld ein. BlitzText liest keine Bildschirminhalte mit, die Berechtigung wird nur zum Einfügen genutzt.</string>
+
+    <string name="abschnitt_verbindung">Verbindung</string>
+    <string name="hinweis_backend_url">Backend-Adresse (Tailscale)</string>
+    <string name="hinweis_passwort">App-Passwort</string>
+    <string name="hinweis_begriffe">Eigennamen-Hilfe (Begriffe)</string>
+    <string name="knopf_selbsttest">Selbsttest</string>
+    <string name="knopf_speichern">Speichern</string>
+
+    <string name="abschnitt_modus">Veredelungs-Modus</string>
+    <string name="modus_klartext">Klartext: 1:1 wie gesprochen</string>
+    <string name="modus_umschreiben">Umschreiben: Grammatik glätten, Füllwörter raus</string>
+    <string name="modus_freundlich">Freundlich: höflich und sachlich formulieren</string>
+    <string name="modus_emoji">Emoji: Text mit passenden Emojis</string>
+
+    <string name="abschnitt_privat">Privat-Modus</string>
+    <string name="privat_schalter">Privat: nur eigener Server</string>
+    <string name="privat_erklaerung">Für Diktate mit Patientenbezug: Spracherkennung und Veredelung laufen komplett auf deinem eigenen Server, OpenAI wird nicht angerufen. Der Ring um den Mikro-Knopf wird grün. Etwas langsamer als der Normalweg.</string>
+
+    <string name="abschnitt_berechtigungen">Berechtigungen</string>
+    <string name="recht_mikrofon">Mikrofon</string>
+    <string name="recht_overlay">Über anderen Apps anzeigen</string>
+    <string name="recht_einfuegen">Bedienungshilfe (Text einfügen)</string>
+    <string name="knopf_erteilen">Erteilen</string>
+
+    <string name="abschnitt_knopf">Schwebender Mikro-Knopf</string>
+    <string name="knopf_starten">Knopf starten</string>
+    <string name="knopf_stoppen">Knopf stoppen</string>
+    <string name="knopf_erklaerung">Knopf gedrückt halten, sprechen, loslassen: der Text erscheint im aktiven Eingabefeld. Knopf ziehen verschiebt ihn.</string>
+
+    <string name="benachrichtigung_titel">BlitzText aktiv</string>
+    <string name="benachrichtigung_text">Der Mikro-Knopf schwebt. Halten, sprechen, loslassen.</string>
+
+    <string name="ergebnis_titel">Diktat</string>
+    <string name="ergebnis_privat_badge">Privat ✓</string>
+    <string name="ergebnis_kopieren">Kopieren</string>
+    <string name="ergebnis_teilen">Teilen</string>
+    <string name="ergebnis_speichern">Speichern</string>
+    <string name="ergebnis_drucken">Drucken</string>
+</resources>
