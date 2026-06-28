@@ -198,6 +198,11 @@ grün; PC: Haken im Tray-Menü oder Einstellungsfenster):
 - Kombinierbar mit allen vier Modi (z.B. Privat + Umschreiben)
 - Preis der Privatheit: etwas langsamer, Veredelung etwas schwächer als OpenAI
 
+**Erzwungener Privat-Modus (für geteilte Geräte):** Mit der Backend-Einstellung
+`PRIVAT_ERZWINGEN=1` läuft *jedes* Diktat lokal — egal, was am Client eingestellt ist.
+Gedacht für ein lokales Backend, das z.B. mehrere Tablets im Betrieb bedient, die
+garantiert nie über die Cloud gehen dürfen (im Dentallabor mit Patientenbezug).
+
 Damit dürfen auch Diktate mit sensiblem Bezug gesprochen werden — sie bleiben auf dem
 eigenen Server. Dieser Server muss **kein externer VPS** sein: Er kann genauso ein Rechner
 im eigenen Labor sein, dann läuft alles nur im lokalen Netz (WLAN) und verlässt das Haus

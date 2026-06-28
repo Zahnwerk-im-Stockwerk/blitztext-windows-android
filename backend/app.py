@@ -14,6 +14,8 @@ Umgebungs-Variablen (siehe .env.example):
   STT_MODELL       OpenAI-Transkriptionsmodell (default: whisper-1)
   CHAT_MODELL      OpenAI-Chatmodell fuer die Veredelung (default: gpt-4o-mini)
   STUB_MODUS       "1" = kein echter OpenAI-Call, gibt Test-Text zurueck (fuer Tests)
+  PRIVAT_ERZWINGEN "1" = jedes Diktat laeuft lokal (kein OpenAI), egal was der Client
+                   schickt. Fuer Backends, die nie in die Cloud duerfen (z.B. Labor-Tablets).
 """
 
 import hmac
@@ -47,6 +49,10 @@ STUB_MODUS = os.getenv("STUB_MODUS", "") == "1"
 LOKAL_STT_MODELL = os.getenv("LOKAL_STT_MODELL", "small")
 LOKAL_CHAT_MODELL = os.getenv("LOKAL_CHAT_MODELL", "qwen2.5:3b-instruct")
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://ollama:11434")
+
+# "1" = JEDES Diktat laeuft lokal, egal was der Client schickt. Fuer ein Backend, das
+# strukturell nie ueber OpenAI gehen darf (z.B. Labor-Tablets mit Patientenbezug).
+PRIVAT_ERZWINGEN = os.getenv("PRIVAT_ERZWINGEN", "") == "1"
 
 # Maximale Audiogroesse (Schutz gegen versehentliche Riesen-Uploads). 25 MB =
 # OpenAI-Whisper-Limit, lange Diktate gehen auch so locker rein.
@@ -180,6 +186,11 @@ async def transkribieren(
     der OpenAI-Codepfad wird strukturell nicht beruehrt. Im Privat-Zweig wird
     bewusst kein Textinhalt geloggt, nur die Dauer.
     """
+    # Serverseitige Erzwingung: dieses Backend laesst NICHTS ueber OpenAI laufen,
+    # egal was der Client als privat-Flag schickt (z.B. fuer Labor-Tablets).
+    if PRIVAT_ERZWINGEN:
+        privat = "1"
+
     if modus not in ERLAUBTE_MODI:
         raise HTTPException(status_code=400, detail=f"Unbekannter Modus: {modus}")
 
