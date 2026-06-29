@@ -138,7 +138,7 @@ Knopf **ziehen** verschiebt ihn. War kein Textfeld fokussiert, öffnet sich das
 **Ergebnis-Fenster** (ansehen, nachbessern, kopieren, teilen, speichern, **drucken**).
 
 **Fertige APK herunterladen (einfachster Weg):**
-Die fertige APK liegt unter [Releases](https://github.com/Zahnwerk-im-Stockwerk/blitztext-windows-android/releases/latest): direkt im Handy-Browser Ã¶ffnen und installieren, kein Bauen nÃ¶tig.
+Die fertige APK liegt unter [Releases](https://github.com/Zahnwerk-im-Stockwerk/blitztext-windows-android/releases/latest): direkt im Handy-Browser öffnen und installieren, kein Bauen nötig.
 
 **Oder selbst bauen (passiert in der GitHub-Cloud, nichts auf deinem PC — kein Android-SDK nötig):**
 1. Der Code liegt in `android/`. Bei jedem Push mit Änderungen dort baut der Workflow
