@@ -20,6 +20,14 @@ class WavRecorder {
         // unterstuetzten Rate aufnehmen (48 kHz bevorzugt = sauberes 3:1-Downsampling,
         // dann 44,1 kHz, 16 kHz nur als letzte Wahl) und auf SAMPLERATE herunterrechnen.
         private val KANDIDATEN = intArrayOf(48000, 44100, 16000)
+        // Mikrofon-Quellen in Praeferenz-Reihenfolge: VOICE_RECOGNITION zuerst, weil manche
+        // Geraete (z.B. Lenovo) ueber MIC Stille liefern, ueber die Spracherkennungs-Quelle
+        // aber Ton (die nutzt auch Google). MIC/DEFAULT als Rueckfall.
+        private val QUELLEN = intArrayOf(
+            MediaRecorder.AudioSource.VOICE_RECOGNITION,
+            MediaRecorder.AudioSource.MIC,
+            MediaRecorder.AudioSource.DEFAULT
+        )
         private const val KANAL = AudioFormat.CHANNEL_IN_MONO
         private const val FORMAT = AudioFormat.ENCODING_PCM_16BIT
     }
@@ -42,22 +50,24 @@ class WavRecorder {
     @SuppressLint("MissingPermission")
     fun start(): Boolean {
         if (laeuft) return true
-        // Erste vom Geraet unterstuetzte Aufnahme-Rate aus der Kandidatenliste waehlen.
+        // Erste funktionierende Kombination aus Mikrofon-Quelle + Aufnahme-Rate waehlen.
         var rec: AudioRecord? = null
         var minGroesse = 0
-        for (rate in KANDIDATEN) {
-            val groesse = AudioRecord.getMinBufferSize(rate, KANAL, FORMAT)
-            if (groesse <= 0) continue
-            val kandidat = try {
-                AudioRecord(MediaRecorder.AudioSource.MIC, rate, KANAL, FORMAT, groesse * 4)
-            } catch (_: Exception) { null }
-            if (kandidat != null && kandidat.state == AudioRecord.STATE_INITIALIZED) {
-                rec = kandidat
-                minGroesse = groesse
-                aufnahmeRate = rate
-                break
+        schleife@ for (quelle in QUELLEN) {
+            for (rate in KANDIDATEN) {
+                val groesse = AudioRecord.getMinBufferSize(rate, KANAL, FORMAT)
+                if (groesse <= 0) continue
+                val kandidat = try {
+                    AudioRecord(quelle, rate, KANAL, FORMAT, groesse * 4)
+                } catch (_: Exception) { null }
+                if (kandidat != null && kandidat.state == AudioRecord.STATE_INITIALIZED) {
+                    rec = kandidat
+                    minGroesse = groesse
+                    aufnahmeRate = rate
+                    break@schleife
+                }
+                kandidat?.release()
             }
-            kandidat?.release()
         }
         if (rec == null) return false
         puffer.reset()
