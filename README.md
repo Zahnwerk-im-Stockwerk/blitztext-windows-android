@@ -137,7 +137,10 @@ sprechen, **loslassen** → Text erscheint im aktiven Eingabefeld an der Cursor-
 Knopf **ziehen** verschiebt ihn. War kein Textfeld fokussiert, öffnet sich das
 **Ergebnis-Fenster** (ansehen, nachbessern, kopieren, teilen, speichern, **drucken**).
 
-**Bauen (passiert in der GitHub-Cloud, nichts auf deinem PC — kein Android-SDK nötig):**
+**Fertige APK herunterladen (einfachster Weg):**
+Die fertige APK liegt unter [Releases](https://github.com/Zahnwerk-im-Stockwerk/blitztext-windows-android/releases/latest): direkt im Handy-Browser Ã¶ffnen und installieren, kein Bauen nÃ¶tig.
+
+**Oder selbst bauen (passiert in der GitHub-Cloud, nichts auf deinem PC — kein Android-SDK nötig):**
 1. Der Code liegt in `android/`. Bei jedem Push mit Änderungen dort baut der Workflow
    `.github/workflows/android-apk.yml` automatisch die APK.
 2. Fertige APK: GitHub → **Actions** → Lauf "BlitzText Android APK" → Artefakt
